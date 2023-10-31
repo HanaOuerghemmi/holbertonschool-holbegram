@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/methods/auth_methods.dart';
 import 'package:holbegram/screens/login_screen.dart';
+import 'package:holbegram/screens/upload_image_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmController = TextEditingController();
   bool _passwordVisible = true;
-   @override
+  @override
   void dispose() {
     emailController.dispose();
     usernameController.dispose();
@@ -31,10 +32,11 @@ class _SignUpState extends State<SignUp> {
     super.initState();
     _passwordVisible;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,28 +147,21 @@ class _SignUpState extends State<SignUp> {
 
                         String passwordConfirm = passwordConfirmController.text;
                         if (password == passwordConfirm) {
-                          String resulat = await AuthMethods().signUpUser(
-                              email: email,
-                              password: password,
-                              username: username);
-
-                          if (resulat == "success") {
-                            Navigator.push(
+                          Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(resulat),
-                            ));
-                          }
+                                  builder: (context) => AddPicture(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                    username: usernameController.text,
+                                  ),
+                                ));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("tape password correct"),
                           ));
                         }
                       },
-                      
                       child: Text(
                         'Sign up',
                         style: TextStyle(

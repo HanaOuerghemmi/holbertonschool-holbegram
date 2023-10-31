@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/methods/auth_methods.dart';
+import 'package:holbegram/screens/home.dart';
 import 'package:holbegram/screens/signup_screen.dart';
 import 'package:holbegram/screens/upload_image_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
@@ -109,10 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               content: Text('Login successful'), 
                             ));
                             Navigator.of(context).pushReplacement(MaterialPageRoute(
-    builder: (context) => AddPicture(
-      email: emailController.text, 
-      password: passwordController.text,
-     username: emailController.text,),
+    builder: (context) => Home(),
   ));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(

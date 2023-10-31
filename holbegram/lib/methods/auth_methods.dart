@@ -42,11 +42,42 @@ class AuthMethods {
       Users users = Users(
         email: email,
         username: username,
+        uid: user!.uid,
+        bio: "",
+        photoUrl: "",
+        follwers: [],
+        follwing: [],
+        posts: [],
+        saved: [],
+        searchKey: "",
       );
       await _firestore.collection("users").doc(user!.uid).set(users.toJson());
       return "success";
     } catch (error) {
       return error.toString();
     }
+  }
+  
+   Future<User?> getCurrentUser() async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    FirebaseAuth.instance.currentUser;
+    return user;
+  }
+   Future<Users?> getUserDetails() async {
+    try {
+      final currentUser = await getCurrentUser();
+      if (currentUser != null) {
+        final userId = currentUser.uid;
+        final userData = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
+        if (userData != null) {
+          final user = Users.fromSnap(userData);
+          return user;
+        }
+      }
+    } catch (e) {
+      print('Error fetching user details: $e');
+    }
+    return null;
   }
 }
