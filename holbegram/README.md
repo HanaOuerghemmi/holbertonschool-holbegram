@@ -2,15 +2,28 @@
 
 A new Flutter project.
 
-## Getting Started
+# ScreenShot
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+<table border="1">
+        <tr>
+            <td><img src ="scrren holbegram/1.png"></td>
+            <td><img src ="scrren holbegram/2.png"></td>
+            <td><img src ="scrren holbegram/3.png"></td>
+        </tr>
+        <tr>
+            <td><img src ="scrren holbegram/4.png"></td>
+            <td><img src ="scrren holbegram/5.png"></td>
+            <td><img src ="scrren holbegram/6.png"></td>
+        </tr>
+         <tr>
+            <td><img src ="scrren holbegram/77.png"></td>
+            <td><img src ="scrren holbegram/7.png"></td>
+            <td><img src ="scrren holbegram/777.png"></td>
+        </tr>
+        <tr>
+            <td><img src ="scrren holbegram/8.png"></td>
+            <td><img src ="scrren holbegram/9.png"></td>   
+        </tr>
+    </table>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

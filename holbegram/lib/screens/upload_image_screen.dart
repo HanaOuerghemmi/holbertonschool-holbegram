@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:holbegram/methods/auth_methods.dart';
+import 'package:holbegram/providers/user_provider.dart';
 import 'package:holbegram/screens/home.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class AddPicture extends StatefulWidget {
   final String email;
@@ -30,29 +32,35 @@ class _AddPictureState extends State<AddPicture> {
   Uint8List? _image;
 
   void selectImageFromGallery() async {
-    final XFile? image =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    final File imageFile = File(image!.path);
-    final Uint8List bytes = await imageFile.readAsBytes();
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      //convert file
+      // final File imageFile = File(image!.path);
+      final Uint8List bytes = await image.readAsBytes();
 
-    setState(() {
-      _image = bytes;
-    });
+      setState(() {
+        _image = bytes;
+      });
+    }
   }
 
   void selectImageFromCamera() async {
-    final XFile? image =
-    await ImagePicker().pickImage(source: ImageSource.camera);
-    final File imageFile = File(image!.path);
-    final Uint8List bytes = await imageFile.readAsBytes();
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      //convert file
+      //final File imageFile = File(image!.path);
+      final Uint8List bytes = await image.readAsBytes();
 
-    setState(() {
-      _image = bytes;
-    });
+      setState(() {
+        _image = bytes;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -80,8 +88,19 @@ class _AddPictureState extends State<AddPicture> {
                     const SizedBox(
                       height: 28,
                     ),
-                    Text("Hello, ${widget.username}"),
-                    const Text("choose imagee from gallery"),
+                    Text("Hello, ${widget.username}, Welcome to Holbegram.",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
+                    ),
+                    
+                    ),
+                    const Text("choose an imagee from gallery or take a new one.",
+                     style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -134,22 +153,25 @@ class _AddPictureState extends State<AddPicture> {
                             email: email,
                             password: password,
                             username: username,
-                            file: _image!,
+                            file: _image,
                           );
-
+                          print("image $_image");
                           if (resulat == "success") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Home(),
-                                ));
-                          } else {
+                            userProvider.refreshUser();
+                           Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
+                          } else  {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(resulat),
                             ));
                           }
                         },
-                        child: Text(
+                        child:const Text(
                           'next',
                           style: TextStyle(
                             color: Colors.white,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:holbegram/methods/auth_methods.dart';
+import 'package:holbegram/providers/user_provider.dart';
 import 'package:holbegram/screens/home.dart';
 import 'package:holbegram/screens/signup_screen.dart';
 import 'package:holbegram/screens/upload_image_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -35,6 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+        final userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -109,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text('Login successful'), 
                             ));
+                            userProvider.refreshUser();
                             Navigator.of(context).pushReplacement(MaterialPageRoute(
     builder: (context) => Home(),
   ));
@@ -173,6 +178,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                    ),
+                     const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: const Divider(
+                            thickness: 2,
+                          ),
+                        ),
+                        Text(
+                          "OR",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Flexible(
+                          child: const Divider(
+                            thickness: 2,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 10,

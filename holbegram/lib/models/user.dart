@@ -33,10 +33,10 @@ class Users {
        username: data['username'],
        bio: data['bio'],
        photoUrl: data['photoUrl'],
-       follwers: data['followers'],
-       follwing: data['following'],
-       posts: data['posts'],
-       saved: data['saved'],
+       follwers: data['followers'] ?? [],
+       follwing: data['following'] ?? [],
+       posts: data['posts'] ?? [],
+       saved: data['saved'] ?? [],
        searchKey: data['searchKey'],
      );
    }

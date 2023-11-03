@@ -11,6 +11,7 @@ class UserProvider with ChangeNotifier {
   Future<void> refreshUser() async {
     final user = await _authMethod.getUserDetails();
     _user = user;
+    print(_user);
     notifyListeners();
   }
 }

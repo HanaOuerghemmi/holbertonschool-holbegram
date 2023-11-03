@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:holbegram/screens/home.dart';
+import 'package:holbegram/screens/Pages/add_image.dart';
+import 'package:holbegram/screens/Pages/favorite.dart';
+import 'package:holbegram/screens/Pages/feed.dart';
+import 'package:holbegram/screens/Pages/profile_screen.dart';
+import 'package:holbegram/screens/Pages/search.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -31,10 +35,10 @@ class _BottomNavState extends State<BottomNav> {
         controller: _pageController,
         children: <Widget>[
           FeedPage(),
-          SearchPage(),
-          AddImagePage(),
-          FavoritePage(),
-          ProfilePage(),
+          SearchScreen(),
+          AddPicture(),
+          FavoriteScreen(),
+          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavyBar(
@@ -54,7 +58,9 @@ class _BottomNavState extends State<BottomNav> {
         },
         items: [
           BottomNavyBarItem(
-            icon: Icon(Icons.home),
+            activeColor: Colors.red,
+            inactiveColor: Colors.black,
+            icon: Icon(Icons.home_outlined),
             title: Text(
               'Home',
               style: TextStyle(
@@ -66,6 +72,8 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           BottomNavyBarItem(
+            activeColor: Colors.red,
+            inactiveColor: Colors.black,
             icon: Icon(Icons.search),
             title: Text(
               'Search',
@@ -79,6 +87,8 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           BottomNavyBarItem(
+            activeColor: Colors.red,
+            inactiveColor: Colors.black,
             icon: Icon(Icons.add),
             title: Text(
               'Add',
@@ -92,7 +102,9 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.favorite),
+            activeColor: Colors.red,
+            inactiveColor: Colors.black,
+            icon: Icon(Icons.favorite_border_outlined),
             title: Text(
               'Favorite',
               style: TextStyle(
@@ -105,7 +117,9 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.person),
+            activeColor: Colors.red,
+            inactiveColor: Colors.black,
+            icon: Icon(Icons.person_2_outlined),
             title: Text(
               'Profile',
               style: TextStyle(
