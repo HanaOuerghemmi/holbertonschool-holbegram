@@ -103,8 +103,8 @@ class _AddPictureState extends State<AddPicture> {
                   ),
                 ),
               ),
-            ), // Replace with your custom logo widget
-            // Replace with your custom logo widget
+            ), // 
+            //
           ],
         ),
         body: Stack(
@@ -115,11 +115,14 @@ class _AddPictureState extends State<AddPicture> {
                   'Add Image',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-               const  Text(
-                  'Choose an image from your gallery or take one.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: const  Text(
+                    'Choose an image from your gallery or take one.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+               ),
                  Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
@@ -187,7 +190,7 @@ class _AddPictureState extends State<AddPicture> {
                             color: Colors.grey
                            ),),
                           
-                          SizedBox(width: 20,),
+                          SizedBox(width: 40,),
                           IconButton(
                             icon: Icon(Icons.camera_alt_outlined, size: 48, color: Colors.red),
                             onPressed: (() => selectImageFromCamera())),
