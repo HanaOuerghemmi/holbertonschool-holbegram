@@ -13,8 +13,8 @@ class SearchScreen extends StatelessWidget {
         title: Container(
 
           decoration: BoxDecoration(
-            color: Colors.red[50],
-        borderRadius: BorderRadius.circular(10), // You can adjust the border radius as needed
+            color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(15), // You can adjust the border radius as needed
         
       ),
           child: TextField(
@@ -43,31 +43,34 @@ class SearchScreen extends StatelessWidget {
     
             final data = snapshot.data!.docs;
     
-            return GridView.custom(
-              gridDelegate: SliverQuiltedGridDelegate(
-                crossAxisCount: 4,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                repeatPattern: QuiltedGridRepeatPattern.inverted,
-                pattern: [
-                  const QuiltedGridTile(4, 4),
-                  const QuiltedGridTile(2, 2),
-                  const QuiltedGridTile(2, 2),
-                ],
-              ),
-              childrenDelegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final document = snapshot.data!.docs[index];
-                  final itemData = document.data() as Map<String, dynamic>;
-                  final Post post = Post.fromJson(itemData);
-                  return Container(
-                    child: Image.network(
-                      post.postUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-                childCount: snapshot.data!.docs.length,
+            return Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: GridView.custom(
+                gridDelegate: SliverQuiltedGridDelegate(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  repeatPattern: QuiltedGridRepeatPattern.inverted,
+                  pattern: [
+                    const QuiltedGridTile(4, 4),
+                    const QuiltedGridTile(2, 2),
+                    const QuiltedGridTile(2, 2),
+                  ],
+                ),
+                childrenDelegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final document = snapshot.data!.docs[index];
+                    final itemData = document.data() as Map<String, dynamic>;
+                    final Post post = Post.fromJson(itemData);
+                    return Container(
+                      child: Image.network(
+                        post.postUrl,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  },
+                  childCount: snapshot.data!.docs.length,
+                ),
               ),
             );
       },

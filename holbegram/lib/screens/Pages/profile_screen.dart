@@ -36,8 +36,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text(
           "Profile",
+          
           style: TextStyle(
             fontFamily: 'Billabong', // Assuming you have the 'Billabong' font
+            fontSize: 40,
           ),
         ),
         actions: [
@@ -82,11 +84,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: 15,
               ),
-              Text(
-                "${userProvider.user!.username}",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+                child: Text(
+                  "${userProvider.user!.username}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
-
+              SizedBox(height: 50,),
               SizedBox(
                 height: 600,
                 child: FutureBuilder(

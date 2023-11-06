@@ -43,7 +43,7 @@ FirebaseFirestore _firestore = FirebaseFirestore.instance;
     try {
       await _firestore.collection('posts').doc(postId).delete();
     } catch (error) {
-      throw error; 
+      print(error.toString()); 
     }
   }
    Future<String> addToFavorite({
@@ -60,7 +60,19 @@ FirebaseFirestore _firestore = FirebaseFirestore.instance;
       throw error;
     }
   }
-
+   Future<String> addToLikes({
+    required String idPost,
+    required String idUser,
+  }) async {
+    try {
+      await _firestore.collection("posts").doc(idPost).update({
+        'likes': FieldValue.arrayUnion([idUser]),
+      });
+      return "OK";
+    } catch (error) {
+      throw error;
+    }
+  }
    Future<List<DocumentSnapshot>?> getPosts(List<dynamic> postsIds) async {
     final firestore = FirebaseFirestore.instance;
     final collection = firestore.collection('posts');

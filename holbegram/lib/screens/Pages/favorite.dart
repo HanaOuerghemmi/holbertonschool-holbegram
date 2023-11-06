@@ -43,21 +43,24 @@ appBar: AppBar(
           if (posts!.isEmpty) {
             return Center(child: Text('No posts available.'));
           }
-          return ListView.separated(
-            
-            itemCount: posts.length,
-           separatorBuilder: (context, index) {
-             return SizedBox(height: 7);
-           },
-            itemBuilder: (context, index) {
-              final Post post = Post.fromSnap(posts[index]);
-              return Image.network(
-                post.postUrl,
-                height: 350,
-                fit: BoxFit.cover,
-              );
-            },
-
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.separated(
+              
+              itemCount: posts.length,
+             separatorBuilder: (context, index) {
+               return SizedBox(height: 7);
+             },
+              itemBuilder: (context, index) {
+                final Post post = Post.fromSnap(posts[index]);
+                return Image.network(
+                  post.postUrl,
+                  height: 350,
+                  fit: BoxFit.cover,
+                );
+              },
+          
+            ),
           );
         }
       ),

@@ -69,6 +69,28 @@ class _FeedsListState extends State<FeedsList> {
                                   ));
                                 }
                               },
+
+                      deleteFunction: () async {
+                                await PostStorage().deletePost(post.postUrl);
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text("Post Deleted"),
+                                ));
+                                userProvider.refreshUser();
+                              },
+                      LikedFuction: () async {
+                                String res = await PostStorage().addToLikes(
+                                    idPost: post.uid,
+                                    idUser: userProvider.user!.uid);
+                                userProvider.refreshUser();
+                                if (res == "liked") {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(res),
+                                  ));
+                                }
+                              },
+                        likesNumber: post.likes.length ,
                     
                     );
                   }
